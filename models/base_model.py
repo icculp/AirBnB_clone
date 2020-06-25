@@ -9,11 +9,15 @@ import cmd, uuid, datetime
 class BaseModel(cmd.Cmd):
     """ BaseModel class for command interpreter """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ constructor for BaseModel """
-        self.id = uuid.uuid4()
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        if kwargs:
+            for item in list(kwargs.keys()):
+                self.item = kwargs[item]
+        else:
+            self.id = uuid.uuid4()
+            self.created_at = datetime.datetime.now()
+            """self.updated_at = datetime.datetime.now()"""
 
     def __str__(self):
         """ string representation of our badass command interpreter """
