@@ -3,17 +3,16 @@
     Base Model
     HolbertonBnB
 """
-import cmd
 import uuid
 import datetime
-from models import storage
 
 
-class BaseModel(cmd.Cmd):
+class BaseModel():
     """ BaseModel class for command interpreter """
 
     def __init__(self, *args, **kwargs):
         """ constructor for BaseModel """
+        from models import storage
         if kwargs:
             for item in list(kwargs.keys()):
                 if item == 'created_at' or item == 'updated_at':
@@ -25,7 +24,7 @@ class BaseModel(cmd.Cmd):
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new(self.__dict__)
+            storage.new(self)
 
     def __str__(self):
         """ string representation of our badass command interpreter """
@@ -35,6 +34,9 @@ class BaseModel(cmd.Cmd):
 
     def save(self):
         """ saves up in this motherfucker """
+        print("GGGGGGGGGGGGGGGGGGG")
+        print(self)
+        from models import storage
         self.updated_at = datetime.datetime.now()
         storage.save()
 
