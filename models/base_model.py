@@ -3,7 +3,10 @@
     Base Model
     HolbertonBnB
 """
-import cmd, uuid, datetime
+import cmd
+import uuid
+import datetime
+from models import storage
 
 
 class BaseModel(cmd.Cmd):
@@ -13,21 +16,28 @@ class BaseModel(cmd.Cmd):
         """ constructor for BaseModel """
         if kwargs:
             for item in list(kwargs.keys()):
-                self.item = kwargs[item]
+                if item == 'created_at' or item == 'updated_at':
+                    self.__dict__[item] = datetime.datetime.strptime(
+                        kwargs[item], '%Y-%m-%dT%H:%M:%S.%f')
+                else:
+                    self.__dict__[item] = kwargs[item]
         else:
-            self.id = uuid.uuid4()
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
-            """self.updated_at = datetime.datetime.now()"""
+            self.updated_at = datetime.datetime.now()
+            storage.new(self.__dict__)
 
     def __str__(self):
         """ string representation of our badass command interpreter """
-        s = "[{}] ({}) {}".format(str(type(self).__name__), self.id, self.__dict__)
+        s = "[{}] ({}) {}".format(str(
+            type(self).__name__), self.id, self.__dict__)
         return s
 
     def save(self):
         """ saves up in this motherfucker """
-        self.updated_at = datetime.datetime
-        
+        self.updated_at = datetime.datetime.now()
+        storage.save()
+
     def to_dict(self):
         """ two dicks """
         '''self.__dict__.update({"__class__") = str(type(self).__name__)'''
