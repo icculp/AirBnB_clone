@@ -5,6 +5,7 @@
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage():
@@ -25,29 +26,31 @@ class FileStorage():
 
     def save(self):
         """ saves/seralizes up in this motherfucker """
-        fn = "file.json"
-        e = self.__objects
-        print("-------------")
-        print(e)
+        e = dict(self.__objects)
+        '''self.reload()'''
+        '''print("299999999")
+        print(e)'''
         for key in list(e.keys()):
-            print("-----------------------")
-            print(e[key])
-            e[key] = e[key].__dict__
+            e[key] = dict(e[key].__dict__)
             e[key]['created_at'] = e[key]['created_at'].now().isoformat()
             e[key]['updated_at'] = e[key]['updated_at'].now().isoformat()
         d = json.dumps(e)
-        with open(fn, 'w', encoding='utf-8') as f:
+        with open(self.__file_path, 'w', encoding='utf-8') as f:
             f.write(d)
+        '''self.reload()'''
 
     def reload(self):
         """ deserializer, up in this bitch """
-        fn = "file.json"
         try:
-            with open(fn, 'r', encoding='utf-8') as f:
+            with open(self.__file_path, 'r', encoding='utf-8') as f:
                 s = f.read()
                 l = json.loads(s)
                 '''self.__objects = l'''
                 for key in list(l.keys()):
-                    self.__objects[key] = BaseModel(**l[key])
+                    if "BaseModel" in key:
+                        self.__objects[key] = BaseModel(**l[key])
+                    elif "User" in key:
+                        self.__objects[key] = User(**l[key])
+                        
         except FileNotFoundError:
             pass
