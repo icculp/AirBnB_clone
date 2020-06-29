@@ -31,9 +31,10 @@ class FileStorage():
         '''print("299999999")
         print(e)'''
         for key in list(e.keys()):
-            e[key] = dict(e[key].__dict__)
+            e[key] = dict(e[key].to_dict())
+            """e[key] = dict(e[key].__dict__)
             e[key]['created_at'] = e[key]['created_at'].now().isoformat()
-            e[key]['updated_at'] = e[key]['updated_at'].now().isoformat()
+            e[key]['updated_at'] = e[key]['updated_at'].now().isoformat()"""
         d = json.dumps(e)
         with open(self.__file_path, 'w', encoding='utf-8') as f:
             f.write(d)
@@ -45,12 +46,16 @@ class FileStorage():
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 s = f.read()
                 l = json.loads(s)
-                '''self.__objects = l'''
+                list_of_classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
                 for key in list(l.keys()):
-                    if "BaseModel" in key:
-                        self.__objects[key] = BaseModel(**l[key])
-                    elif "User" in key:
-                        self.__objects[key] = User(**l[key])
+                    for i in list_of_classes:
+                        if i in key:
+                            c = i + "(**l[key])"
+                            self.__objects[key] = eval(c)
+                        """if "BaseModel" in key:
+                            self.__objects[key] = BaseModel(**l[key])
+                        elif "User" in key:
+                            self.__objects[key] = User(**l[key])"""
                         
         except FileNotFoundError:
             pass

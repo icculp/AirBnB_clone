@@ -19,6 +19,8 @@ class BaseModel():
                 if item == 'created_at' or item == 'updated_at':
                     self.__dict__[item] = datetime.datetime.strptime(
                         kwargs[item], '%Y-%m-%dT%H:%M:%S.%f')
+                elif item == "__class__":
+                    pass
                 else:
                     self.__dict__[item] = kwargs[item]
         else:
@@ -44,9 +46,10 @@ class BaseModel():
         storage.save()
 
     def to_dict(self):
-        """ two dicks """
+        """ Creates a dictionary """
         """self.__dict__.update({"__class__") = str(type(self).__name__)"""
-        self.__dict__['__class__'] = str(type(self).__name__)
-        self.__dict__['created_at'] = self.created_at.now().isoformat()
-        self.__dict__['updated_at'] = self.updated_at.now().isoformat()
-        return self.__dict__
+        new_dict = dict(self.__dict__)
+        new_dict['__class__'] = str(type(self).__name__)
+        new_dict['created_at'] = self.created_at.isoformat()
+        new_dict['updated_at'] = self.updated_at.isoformat()
+        return new_dict
