@@ -35,6 +35,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """ Quit command line """
+        if sys.__stdout__.isatty():
+            print()
         return True
 
     def emptyline(self):
@@ -66,10 +68,10 @@ class HBNBCommand(cmd.Cmd):
             on the class name and id. Ex: $ show BaseModel 1234-1234-1234
         """
         arg = arg.split()
-        if len(arg[0]) == 0:
+        if len(arg) < 1:
             print("** class name missing **")
         elif arg[0] in self.list_of_classes:
-            if len(arg[1]) == 0:
+            if len(arg) < 2:
                 print("** instance id missing **")
             else:
                 if arg[0] + "." + arg[1] in objs:
@@ -86,10 +88,10 @@ class HBNBCommand(cmd.Cmd):
             Ex: $ destroy BaseModel 1234-1234-1234.
         """
         arg = arg.split()
-        if len(arg[0]) == 0:
+        if len(arg) < 1:
             print("** class name missing **")
         elif arg[0] in self.list_of_classes:
-            if len(arg[1]) == 0:
+            if len(arg) < 2:
                 print("** instance id missing **")
             else:
                 if arg[0] + "." + arg[1] in objs:
@@ -151,8 +153,6 @@ class HBNBCommand(cmd.Cmd):
 def main():
     """ Main method, motherfucker """
     HBNBCommand().cmdloop()
-    if sys.__stdout__.isatty():
-        print()
 
 
 if __name__ == "__main__":
