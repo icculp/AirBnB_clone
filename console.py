@@ -50,11 +50,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if len(arg) == 0:
             print("** class name missing **")
-        if arg in self.list_of_classes:
-            '''if (arg == "BaseModel"):
-                new_model = BaseModel()
-            elif (arg == "User"):
-                new_model = User()'''
+        elif arg in self.list_of_classes:
             new_model = eval(arg + "()")
             print(new_model.id)
             new_model.save()
