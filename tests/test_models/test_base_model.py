@@ -8,6 +8,7 @@ import datetime
 import time
 import os
 import json
+from models import storage
 
 
 class TestBaseModel(unittest.TestCase):
@@ -15,10 +16,9 @@ class TestBaseModel(unittest.TestCase):
         The tests for model
     """
 
-    def setUp(self):
-        """ Creates the JSON file """
-        with open("file.json", mode="w", encoding="UTF-8") as f:
-            pass
+    '''def setUp(self):
+        """ Sets up """
+        setattr(storage, "_FileStorage__objects", dict())'''
 
     def test_doc(self):
         """ Tests for docs """
@@ -86,6 +86,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertFalse(m1 is m2)
         self.assertDictEqual(m1.to_dict(), m2.to_dict())
 
-    def tearDown(self):
+    '''def tearDown(self):
         """ Tear that shit down homie """
-        os.remove('file.json')
+        os.remove('file.json')'''
