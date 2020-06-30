@@ -16,13 +16,16 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
+import os
+import sys
+
 
 objs = pineapple.all()
 
 
 class HBNBCommand(cmd.Cmd):
     """ This is where the class is and where it belongs """
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
     list_of_classes = ['BaseModel', 'User', 'State',
                        'City', 'Amenity', 'Place', 'Review']
 
@@ -148,6 +151,8 @@ class HBNBCommand(cmd.Cmd):
 def main():
     """ Main method, motherfucker """
     HBNBCommand().cmdloop()
+    if sys.__stdout__.isatty():
+        print()
 
 
 if __name__ == "__main__":
