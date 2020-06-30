@@ -23,7 +23,8 @@ objs = pineapple.all()
 class HBNBCommand(cmd.Cmd):
     """ This is where the class is and where it belongs """
     prompt = '(hbnb)'
-    list_of_classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
+    list_of_classes = ['BaseModel', 'User', 'State',
+                       'City', 'Amenity', 'Place', 'Review']
 
     def do_quit(self, arg):
         """ Quit command to exit the program """
@@ -77,8 +78,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """
-            Deletes an instance based on the class name and id (save the change into
-            the JSON file). Ex: $ destroy BaseModel 1234-1234-1234.
+            Deletes an instance based on the class name and id
+            (save the change into the JSON file).
+            Ex: $ destroy BaseModel 1234-1234-1234.
         """
         arg = arg.split()
         if len(arg[0]) == 0:
@@ -116,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
         """
             Updates an instance based on the class name and id by adding
             or updating attribute (save the change into the JSON file).Ex:
-            $ update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com".
+            $ update BaseModel 1234-1234-1234 email "aibnb@holberton.com".
         """
         arg = arg.split()
         if len(arg) == 0:
