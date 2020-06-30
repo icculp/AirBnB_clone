@@ -1,24 +1,24 @@
-#!/usr/bin/python3
+#!/usr/bin/pethon3
 """
     This is the test module for base_model
 """
 from models.base_model import BaseModel
 import unittest
 import datetime
-import json
 import time
 import os
+import json
 
 
-class testbasemodel(unittest.TestCase):
+class TestBaseModel(unittest.TestCase):
     """
         The tests for model
     """
 
     def setUp(self):
-            """ Creates the JSON file """
-            with open("file.json", mode="w", encoding="UTF-8") as f:
-                pass
+        """ Creates the JSON file """
+        with open("file.json", mode="w", encoding="UTF-8") as f:
+            pass
 
     def test_doc(self):
         """ Tests for docs """
@@ -86,7 +86,6 @@ class testbasemodel(unittest.TestCase):
         self.assertFalse(m1 is m2)
         self.assertDictEqual(m1.to_dict(), m2.to_dict())
 
-    def setUp(self):
-        """ Creates the JSON file """
-        with open("file.json", mode="w", encoding="UTF-8") as f:
-            pass
+    def tearDown(self):
+        """ Tear that shit down homie """
+        os.remove('file.json')
