@@ -39,6 +39,28 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(type(m1.id), str)
         self.assertEqual(type(m1.created_at), datetime.datetime)
         self.assertEqual(type(m1.updated_at), datetime.datetime)
+        m1.city_id = "123"
+        m1.user_id = "321"
+        m1.name = "Tacoville"
+        m1.description = "Not good at all"
+        m1.number_rooms = 543
+        m1.number_bathrooms = 1
+        m1.max_guest = 7
+        m1.price_by_night = 54352432
+        m1.latitude = 13.5
+        m1.longitude = 12.5
+        m1.amenity_ids = [1, 2, 3]
+        self.assertEqual(type(m1.city_id), str)
+        self.assertEqual(type(m1.user_id), str)
+        self.assertEqual(type(m1.name), str)
+        self.assertEqual(type(m1.description), str)
+        self.assertEqual(type(m1.number_rooms), int)
+        self.assertEqual(type(m1.number_bathrooms), int)
+        self.assertEqual(type(m1.max_guest), int)
+        self.assertEqual(type(m1.price_by_night), int)
+        self.assertEqual(type(m1.latitude), float)
+        self.assertEqual(type(m1.longitude), float)
+        self.assertEqual(type(m1.amenity_ids), list)
 
     def test_class_type(self):
         """ This makes sure we're making a base model """

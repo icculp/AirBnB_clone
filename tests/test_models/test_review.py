@@ -36,6 +36,12 @@ class TestReview(unittest.TestCase):
         self.assertEqual(type(m1.id), str)
         self.assertEqual(type(m1.created_at), datetime.datetime)
         self.assertEqual(type(m1.updated_at), datetime.datetime)
+        m1.place_id = "123"
+        m1.user_id = "321"
+        m1.text = "Really shitty"
+        self.assertEqual(type(m1.place_id), str)
+        self.assertEqual(type(m1.user_id), str)
+        self.assertEqual(type(m1.text), str)
 
     def test_class_type(self):
         """ This makes sure we're making a base model """
