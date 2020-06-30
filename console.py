@@ -146,10 +146,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
 
-def main():
+'''def main():
     """ Main method, motherfucker """
-    HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()'''
 
 
 if __name__ == "__main__":
-    main()
+    HBNBCommand().cmdloop()
