@@ -39,6 +39,7 @@ class TestState(unittest.TestCase):
         self.assertEqual(type(m1.id), str)
         self.assertEqual(type(m1.created_at), datetime.datetime)
         self.assertEqual(type(m1.updated_at), datetime.datetime)
+        self.assertEqual(type(m1.name), str)
 
     def test_class_type(self):
         """ This makes sure we're making a base model """

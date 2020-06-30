@@ -36,6 +36,14 @@ class TestUser(unittest.TestCase):
         self.assertEqual(type(m1.id), str)
         self.assertEqual(type(m1.created_at), datetime.datetime)
         self.assertEqual(type(m1.updated_at), datetime.datetime)
+        m1.email = "ihateunittest@something.gov"
+        m1.last_name = "Bond"
+        m1.password = "password123"
+        m1.first_name = "James"
+        self.assertEqual(type(m1.email), str)
+        self.assertEqual(type(m1.last_name), str)
+        self.assertEqual(type(m1.password), str)
+        self.assertEqual(type(m1.first_name), str)
 
     def test_class_type(self):
         """ This makes sure we're making a base model """
