@@ -84,8 +84,8 @@ class TestBaseModel(unittest.TestCase):
             not our own test
         """
         o = BaseModel()
-        sleep(1)
-        n = datetime.now().replace(microsecond=0)
+        time.sleep(1)
+        n = datetime.datetime.now().replace(microsecond=0)
         o.save()
         self.assertEqual(o.updated_at.replace(microsecond=0), n)
 

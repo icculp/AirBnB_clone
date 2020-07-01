@@ -7,6 +7,8 @@ import unittest
 from models.engine.file_storage import FileStorage
 import os
 from models import storage
+import time
+import datetime
 
 
 class TestFileStorage(unittest.TestCase):
@@ -57,6 +59,17 @@ class TestFileStorage(unittest.TestCase):
         storage.reload()
         new = storage.all()
         self.assertDictEqual(new["BaseModel." + b1.id].to_dict(), b1.to_dict())
+
+    def test_save_andrew_kali_suggestion(self):
+        """
+            test save using method provided by peer in Bog
+            not our own test
+        """
+        o = BaseModel()
+        time.sleep(1)
+        n = datetime.datetime.now().replace(microsecond=0)
+        o.save()
+        self.assertEqual(o.updated_at.replace(microsecond=0), n)
 
     '''def tearDown(self):
         """ Tear that shit down homie """
