@@ -146,9 +146,16 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def precmd(self, line):
+        count = 0
         for key in self.list_of_classes:
             if line == (key + ".all()"):
                 return cmd.Cmd.precmd(self, "all " + key)
+            elif line == (key + ".count()"):
+                for thing in objs:
+                    if key in thing:
+                        count = count + 1
+                print(count)
+                return cmd.Cmd.precmd(self, "\n")
         return cmd.Cmd.precmd(self, line)
 
 '''def main():
