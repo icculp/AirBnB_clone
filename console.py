@@ -70,6 +70,7 @@ class HBNBCommand(cmd.Cmd):
             if len(arg) < 2:
                 print("** instance id missing **")
             else:
+                print(arg[0] + "." + arg[1])
                 if arg[0] + "." + arg[1] in objs:
                     print(objs[arg[0] + "." + arg[1]])
                 else:
@@ -160,7 +161,7 @@ class HBNBCommand(cmd.Cmd):
                         count = count + 1
                 print(count)
                 return cmd.Cmd.precmd(self, "\n")
-            elif len(items) > 1 and len(command) > 1 and command[0] == "show":
+            elif len(items) > 1 and len(command) > 1 and command[0] == "show" and key == items[0]:
                 if items[0] in self.list_of_classes:
                     for i in command[1]:
                         if i != ")":
@@ -172,6 +173,12 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** class doesn't exist **")
                     return cmd.Cmd.precmd(self, "\n")
+            elif len(items) > 1 and len(command) > 1 and command[0] == "destroy" and key == items[0]:
+                if items[0] in self.list_of_classes:
+                    for i in command[1]:
+                        if i != ")":
+                            new_string = new_string + i
+                    return cmd.Cmd.precmd(self, "destroy " + key + " " + new_string)
         return cmd.Cmd.precmd(self, line)
 
 '''def main():
