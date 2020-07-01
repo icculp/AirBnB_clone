@@ -145,6 +145,11 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def precmd(self, line):
+        for key in self.list_of_classes:
+            if line == (key + ".all()"):
+                return cmd.Cmd.precmd(self, "all " + key)
+        return cmd.Cmd.precmd(self, line)
 
 '''def main():
     """ Main method, motherfucker """
