@@ -161,10 +161,14 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
                 return cmd.Cmd.precmd(self, "\n")
             elif len(items) > 1 and len(command) > 1 and command[0] == "show":
-                for i in command[1]:
-                    if i != ")":
-                        new_string = new_string + i
-                return cmd.Cmd.precmd(self, "show " + key + " " + new_string)
+                if items[0] in self.list_of_classes:
+                    for i in command[1]:
+                        if i != ")":
+                            new_string = new_string + i
+                    return cmd.Cmd.precmd(self, "show " + key + " " + new_string)
+                else:
+                    print("** class doesn't exist **")
+                    return cmd.Cmd.precmd(self, "\n")
         return cmd.Cmd.precmd(self, line)
 
 '''def main():
