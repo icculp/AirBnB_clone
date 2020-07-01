@@ -78,6 +78,17 @@ class TestBaseModel(unittest.TestCase):
                 d = d[item]
         self.assertDictEqual(d, m1.to_dict())
 
+    def test_save_andrew_kali_suggestion(self):
+        """
+            test save using method provided by peer in Bog
+            not our own test
+        """
+        o = BaseModel()
+        sleep(1)
+        n = datetime.now().replace(microsecond=0)
+        o.save()
+        self.assertEqual(o.updated_at.replace(microsecond=0), n)
+
     def test_new_model_from_dict(self):
         """ Tests createion of new model with dictionary """
         m1 = BaseModel()
