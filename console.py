@@ -166,6 +166,9 @@ class HBNBCommand(cmd.Cmd):
                         if i != ")":
                             new_string = new_string + i
                     return cmd.Cmd.precmd(self, "show " + key + " " + new_string)
+                elif items[0] == "":
+                    print("** class name missing **")
+                    return cmd.Cmd.precmd(self, "\n")
                 else:
                     print("** class doesn't exist **")
                     return cmd.Cmd.precmd(self, "\n")
