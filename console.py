@@ -184,6 +184,26 @@ class HBNBCommand(cmd.Cmd):
                                 new_string + i)
                     return cmd.Cmd.precmd(
                         self, "destroy " + key + " " + new_string)
+            elif ((len(items) > 1 and len(command) > 1 and
+                   command[0] == "update" and key == items[0])):
+                if items[0] in self.list_of_classes:
+                    for i in command[1]:
+                        if i != ")":
+                            new_string = new_string + i
+                    new_string_split = new_string.split(", ")
+                    new_string = ""
+                    for s in new_string_split:
+                        new_string += s.strip("'\"") + " "
+                    print("FARTSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+                    print(new_string)
+                    return cmd.Cmd.precmd(
+                        self, "update " + key + " " + new_string)
+                elif items[0] == "":
+                    print("** class name missing **")
+                    return cmd.Cmd.precmd(self, "\n")
+                else:
+                    print("** class doesn't exist **")
+                    return cmd.Cmd.precmd(self, "\n")
         return cmd.Cmd.precmd(self, line)
 
 '''def main():
