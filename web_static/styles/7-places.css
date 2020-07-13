@@ -1,0 +1,51 @@
+.places {
+	color: black;
+	display: flex;
+	flex: auto;
+/*	overflow-y: auto;
+#	overflow-x: auto;*/
+	position: absolute;
+/*	padding: 20px;*/
+	margin: 20px 20px 80px 0px;
+    flex-wrap: wrap;
+    align-items: center;
+/*	flex-direction: initial;*/
+/*	align-content: center;*/
+	justify-content: center;
+}
+
+.places article {
+/*	display: flex;
+	flex: auto;*/
+/*	overflow-y: scroll;
+	position: relative;
+	flex-direction: ;*/
+/*	align-content: center;
+    box-align: center;
+    align-content: center;
+    align-items: center;*/
+    text-align: center;
+	justify-content: center;
+	width: 390px;
+	padding: 20px;
+	margin: 20px 20px 20px 20px;
+	border: 1px solid #ff5a5f;
+	border-radius: 4px;
+	color: black;
+}
+
+.places h1 {
+	padding-left: 20px;
+	width: 100%;
+/*	display: flex;
+	flex-direction: column;
+	flex: 1;*/
+	font-size: 30px;
+}
+
+.places h2 {
+	display: flex;
+	flex: auto;
+	flex-direction: row;
+	font-size: 30px;
+}
